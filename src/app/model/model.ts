@@ -99,3 +99,15 @@ export class InterfaceInfo {
             && [];
     }
 }
+
+export class Rsp {
+    code: number;
+    message: string;
+    data: any;
+
+    constructor(opt: any = {}) {
+        this.code = opt && opt.code || 0;
+        this.message = opt && opt.message || '';
+        this.data = opt && opt.data;
+    }
+}
