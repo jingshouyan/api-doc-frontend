@@ -64,7 +64,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "api-doc:build"
+            "browserTarget": "api-doc:build",
+            "proxyConfig": "src/proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -138,7 +139,7 @@
           }
         }
       }
-     }
+    }
   },
   "defaultProject": "api-doc"
 }
