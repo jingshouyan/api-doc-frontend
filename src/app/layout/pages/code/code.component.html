@@ -1,16 +1,8 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">CODE</th>
-      <th scope="col">MESSAGE</th>
-      <th scope="col">WHO USE</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let c of codes | async">
-      <td>{{ c.code }}</td>
-      <td>{{ c.message }}</td>
-      <td>{{ c.whoUse }}</td>
-    </tr>
-  </tbody>
+<table mat-table [dataSource]="codes" class="mat-elevation-z8">
+  <ng-container *ngFor="let column of columnNames" [matColumnDef]="column.id" >
+    <th mat-header-cell *matHeaderCellDef > {{column.value}} </th>
+    <td mat-cell *matCellDef="let c">{{c[column.id]}}</td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
