@@ -1,3 +1,16 @@
-<p>
-  code works!
-</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">CODE</th>
+      <th scope="col">MESSAGE</th>
+      <th scope="col">WHO USE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let c of codes | async">
+      <td>{{ c.code }}</td>
+      <td>{{ c.message }}</td>
+      <td>{{ c.whoUse }}</td>
+    </tr>
+  </tbody>
+</table>

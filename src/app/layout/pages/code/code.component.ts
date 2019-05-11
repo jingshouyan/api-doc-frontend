@@ -1,5 +1,7 @@
 import { ApiService } from './../../../services/api.service';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { CodeInfo } from 'src/app/model/model';
 
 @Component({
   selector: 'app-code',
@@ -8,16 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CodeComponent implements OnInit {
 
+  codes: Observable<CodeInfo[]>;
+
+
   constructor(private apiService: ApiService) {
     console.log(apiService);
-   }
+  }
 
   ngOnInit() {
     this.getCodes();
   }
 
   getCodes() {
-    this.apiService.getCodes().subscribe(x => console.log(x));
+    this.codes = this.apiService.getCodes();
   }
 
 }
