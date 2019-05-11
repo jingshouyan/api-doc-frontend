@@ -1,3 +1,57 @@
-<p>
-  server works!
-</p>
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let method of methods">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{method.output.rootType}} {{method.name}}(Token token,{{method.input.rootType}} param);
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <!-- input -->
+    <mat-toolbar>
+      <span>Input: {{method.input.rootType}}</span>
+    </mat-toolbar>
+    <mat-card *ngFor="let typeInfo of method.input.types">
+      <mat-card-header>
+        <mat-card-title>
+          {{typeInfo.type}}
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+
+        <table mat-table [dataSource]="typeInfo.fields" class="mat-elevation-z8">
+          <ng-container *ngFor="let column of columnNames" [matColumnDef]="column.id">
+            <th mat-header-cell *matHeaderCellDef> {{column.value}} </th>
+            <td mat-cell *matCellDef="let c">{{c[column.id]}}</td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+      </mat-card-content>
+    </mat-card>
+
+    <!-- output -->
+    <mat-toolbar>
+        <span>Output: {{method.output.rootType}}</span>
+      </mat-toolbar>
+      <mat-card *ngFor="let typeInfo of method.output.types">
+        <mat-card-header>
+          <mat-card-title>
+            {{typeInfo.type}}
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+  
+          <table mat-table [dataSource]="typeInfo.fields" class="mat-elevation-z8">
+            <ng-container *ngFor="let column of columnNames" [matColumnDef]="column.id">
+              <th mat-header-cell *matHeaderCellDef> {{column.value}} </th>
+              <td mat-cell *matCellDef="let c">{{c[column.id]}}</td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+  
+        </mat-card-content>
+      </mat-card>
+  </mat-expansion-panel>
+</mat-accordion>
