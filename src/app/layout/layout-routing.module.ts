@@ -9,7 +9,7 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       { path: 'code', component: CodeComponent },
-      { path: '**', redirectTo: 'code' },
+      // { path: '**', redirectTo: 'code' },
     ]
   }
 ];
