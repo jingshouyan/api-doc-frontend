@@ -2,6 +2,7 @@ import { CodeComponent } from './pages/code/code.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LayoutComponent } from './layout.component';
+import { ServerComponent } from './pages/server/server.component';
 
 const routes: Routes = [
   {
@@ -9,7 +10,8 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       { path: 'code', component: CodeComponent },
-      // { path: '**', redirectTo: 'code' },
+      { path: 'server/:name', component: ServerComponent },
+      { path: '**', redirectTo: 'code' },
     ]
   }
 ];

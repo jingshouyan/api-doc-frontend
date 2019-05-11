@@ -5,7 +5,7 @@
   <mat-divider></mat-divider>
   <mat-list-item> Servers </mat-list-item>
   <mat-divider></mat-divider>
-  <mat-list-item *ngFor="let server of servers | async" [routerLink]="[ '/server', {name: server.name} ]">
+  <mat-list-item *ngFor="let server of servers | async" [routerLink]="[ '/server/',server.name ]">
     >{{ server.name }} 
   </mat-list-item>
   <mat-divider></mat-divider>
