@@ -1,4 +1,4 @@
-import { ServerInfo, Rsp, CodeInfo } from './../model/model';
+import { ServerInfo, Rsp, CodeInfo, InterfaceInfo } from './../model/model';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -19,12 +19,19 @@ export class ApiService {
     );
   }
 
+  getServer(serverName: string): Observable<InterfaceInfo> {
+    const endpoint = `api/server/${serverName}`;
+    return this.http.get<Rsp>(endpoint).pipe(
+      map(rsp => new InterfaceInfo(rsp.data))
+    );
+  }
+
   getCodes(): Observable<CodeInfo[]> {
-    console.log(111);
     const endpoint = 'api/codes';
     return this.http.get<Rsp>(endpoint).pipe(
       map(rsp => _.map(rsp.data, x => new CodeInfo(x)))
     );
   }
+
 
 }

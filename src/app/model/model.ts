@@ -1,4 +1,4 @@
-import { map } from 'underscore';
+import * as _ from 'underscore';
 
 export class CodeInfo {
     code: number;
@@ -53,7 +53,7 @@ export class TypeInfo {
         this.remark = opt && opt.remark || '';
         this.annotations = opt && opt.annotations || [];
         this.fields = opt
-            && map(opt.fields, (f: any) => new FieldInfo(f))
+            && _.map(opt.fields, (f: any) => new FieldInfo(f))
             || [];
     }
 }
@@ -65,7 +65,7 @@ export class BeanInfo {
     constructor(opt: any = {}) {
         this.rootType = opt && opt.rootType || '';
         this.types = opt
-            && map(opt.types, (t: any) => new TypeInfo(t))
+            && _.map(opt.types, (t: any) => new TypeInfo(t))
             || [];
     }
 }
@@ -90,13 +90,15 @@ export class InterfaceInfo {
     codeInfos: CodeInfo[];
 
     constructor(opt: any = {}) {
+
         this.serverInfo = opt && opt.serverInfo && new ServerInfo(opt.serverInfo);
         this.methodInfos = opt
-            && map(opt.methodInfos, (m: any) => new MethodInfo(m))
-            && [];
+            && _.map(opt.methodInfos, (m: any) => new MethodInfo(m))
+            || [];
         this.codeInfos = opt
-            && map(opt.codeInfos, (c: any) => new CodeInfo(c))
-            && [];
+            && _.map(opt.codeInfos, (c: any) => new CodeInfo(c))
+            || [];
+        console.log(opt, this);
     }
 }
 
